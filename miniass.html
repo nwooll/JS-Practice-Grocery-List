@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>A00987471 - Logics 2 </title>
+    
+    <link rel="stylesheet" href="miniass.css">
+    
+    <style>
+        
+    </style>
+    
+    </head>
+    
+    <body>
+
+        
+        
+        <div class="container">
+		
+			<input type="text" id="Uinput" placeholder="Enter your food">
+			<button id="enterBtn">Store</button>
+			<button class="activeBtn" id="drinks">Drinks</button>
+			<button id="meat">Meat</button>
+			<button id="vegetables">Vegetables</button>
+			<button id="fruits">Fruits</button>
+			<div id="listContainer"></div>
+		
+	</div>
+        
+        
+        
+        
+<script>
+var drinkArr = [],
+	meatArr = [],
+	vegArr = [],
+	fruitArr = [];
+
+var enterBtn = document.getElementById("enterBtn"),
+	drinkBtn = document.getElementById("drinks"),
+	meatBtn = document.getElementById("meat"),
+	vegBtn = document.getElementById("vegetables"),
+	fruitBtn = document.getElementById("fruits");
+
+var Uinput = document.getElementById("Uinput"),
+	listContainer = document.getElementById("listContainer");
+
+var activeBtn = 1;
+
+
+function notActive() {
+	drinkBtn.classList = "cat";
+	meatBtn.classList = "cat";
+	vegBtn.classList = "cat";
+	fruitBtn.classList = "cat";
+}
+
+drinkBtn.addEventListener("click", function () {
+	notActive();
+	drinkBtn.className += " activeBtn";
+	activeBtn = 1;
+
+	listContainer.innerHTML = "";
+
+	for (var i = 0; i < drinkArr.length; i++) {
+		var newItem = document.createElement("div");
+		newItem.className = "item";
+		newItem.innerHTML = drinkArr[i];
+		listContainer.appendChild(newItem);
+	}
+});
+
+meatBtn.addEventListener("click", function () {
+	notActive();
+	meatBtn.className += " activeBtn";
+	activeBtn = 2;
+
+	listContainer.innerHTML = "";
+
+	for (var i = 0; i < meatArr.length; i++) {
+		var newItem = document.createElement("div");
+		newItem.className = "item";
+		newItem.innerHTML = meatArr[i];
+		listContainer.appendChild(newItem);
+	}
+});
+
+vegBtn.addEventListener("click", function () {
+	notActive();
+	vegBtn.className += " activeBtn";
+	activeBtn = 3;
+
+	listContainer.innerHTML = "";
+
+	for (var i = 0; i < vegArr.length; i++) {
+		var newItem = document.createElement("div");
+		newItem.className = "item";
+		newItem.innerHTML = vegArr[i];
+		listContainer.appendChild(newItem);
+	}
+});
+
+fruitBtn.addEventListener("click", function () {
+	notActive();
+	fruitBtn.className += " activeBtn";
+	activeBtn = 4;
+
+    //clear container's content
+	listContainer.innerHTML = "";
+
+	for (var i = 0; i < fruitArr.length; i++) {
+		var newItem = document.createElement("div");
+		newItem.className = "item";
+		newItem.innerHTML = fruitArr[i];
+		listContainer.appendChild(newItem);
+	}
+});
+
+// Store
+
+enterBtn.addEventListener("click", function () {
+	storeItem();
+});
+
+Uinput.addEventListener("keyup", function (ev) {
+	if (ev.keyCode == 13) {
+		storeItem();
+	}
+});
+
+function storeItem() {
+	if (Uinput.value == "") {
+		Uinput.placeholder = "Nothing entered! Try Again";
+	} else {
+		var newItem = document.createElement("div");
+		newItem.className = "item";
+		newItem.innerHTML = Uinput.value;
+		listContainer.appendChild(newItem);
+
+		addToArr();
+
+		Uinput.value = "";
+		Uinput.placeholder = "Enter a food";
+	}
+}
+
+function addToArr() {
+	if (activeBtn == 1) {
+		drinkArr.push(Uinput.value);
+		console.log(drinkArr);
+	} else if (activeBtn == 2) {
+		meatArr.push(Uinput.value);
+		console.log(meatArr);
+	} else if (activeBtn == 3) {
+		vegArr.push(Uinput.value);
+		console.log(vegArr);
+	} else {
+		fruitArr.push(Uinput.value);
+		console.log(fruitArr);
+	}
+}
+        </script>
+        </body>
+</html>
